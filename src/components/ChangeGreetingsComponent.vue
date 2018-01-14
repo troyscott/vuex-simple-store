@@ -1,17 +1,17 @@
 // ChangeGreeetingsComponent.vue
 <template>
-    <input :value='msg' @keyup='changeMsg'>
+    <input :value="msg" @keyup="changeMessage($event.target.value)"
+    @keyup.enter="incrementCounter">
+    
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
+
 export default {
   computed: mapGetters({
     msg: 'getMessage'
   }),
-  methods: {
-    changeMsg(ev){
-      this.$store.commit('changeMessage', ev.target.value)
-    }
-  }
+  methods: mapActions(['changeMessage', 'incrementCounter'])
 }
 </script>
